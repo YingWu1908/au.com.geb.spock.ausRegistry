@@ -1,4 +1,0 @@
-package Page
-
-class AddedNew {
-}
