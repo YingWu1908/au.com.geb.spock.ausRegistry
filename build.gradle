@@ -1,0 +1,55 @@
+group 'au.com.geb.spock.ausRegistry'
+version '1.0-SNAPSHOT'
+
+ext {
+    // The drivers we want to use
+    drivers = ["firefox","chrome"]
+}
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile group: 'junit', name: 'junit', version: '4.12'
+    compile "org.spockframework:spock-core:1.0-groovy-2.4"
+    compile group: 'org.gebish', name: 'geb-core', version: '2.0'
+    compile group: 'org.gebish', name: 'geb-spock', version: '2.0'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '3.7.1'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.7.1'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-ie-driver', version: '3.7.1'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.7.1'
+
+}
+
+drivers.each { driver ->
+    task "${driver}Test"(type: Test) {
+        outputs.upToDateWhen { false }  // Always run tests
+
+        systemProperty "geb.build.reportsDir", reporting.file("geb/$name")
+        systemProperty "geb.env", driver
+    }
+}
+
+test {
+    dependsOn drivers.collect { tasks["${it}Test"] }
+    enabled = false
+}
+
+tasks.withType(Test) {
+    maxHeapSize = "1g"
+    jvmArgs '-XX:MaxMetaspaceSize=128m'
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
+tasks.withType(GroovyCompile) {
+    groovyOptions.forkOptions.memoryMaximumSize = '256m'
+}

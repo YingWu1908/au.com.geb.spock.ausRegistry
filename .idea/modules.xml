@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/au.com.geb.spock.ausRegistry.iml" filepath="$PROJECT_DIR$/.idea/modules/au.com.geb.spock.ausRegistry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/au.com.geb.spock.ausRegistry_main.iml" filepath="$PROJECT_DIR$/.idea/modules/au.com.geb.spock.ausRegistry_main.iml" group="au.com.geb.spock.ausRegistry" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/au.com.geb.spock.ausRegistry_test.iml" filepath="$PROJECT_DIR$/.idea/modules/au.com.geb.spock.ausRegistry_test.iml" group="au.com.geb.spock.ausRegistry" />
+    </modules>
+  </component>
+</project>
